@@ -50,10 +50,18 @@ createFile('data.json', json_encode($movies));
  */
 function getSfMovies()
 {
+    // api request url
     $api = 'http://data.sfgov.org/resource/yitu-d5am.json';
+
+    // all movies object response from api
     $movies = json_decode(file_get_contents($api));
+
+    // create movie groups array to use for movie grouping 
     $movieGroups = Array();
 
+    /*
+     * Group movies into single movie objects 
+     */
     for($i = 0; $i < count($movies); $i++)
     {
         // get title to pass to object
@@ -89,6 +97,7 @@ function getSfMovies()
         }
     }
 
+    // return grouped movies
     return $movieGroups;
 }
 
@@ -106,13 +115,10 @@ function fullAddress($loc)
     // expand address shortcodes
     $loc = str_replace('St.', 'Street', $loc);
     $loc = str_replace(' St ', ' Street', $loc);
-
     $loc = str_replace('Dr.', 'Drive', $loc);
     $loc = str_replace(' Dr ', ' Drive', $loc);
-
     $loc = str_replace('Ave.', 'Avenue', $loc);
     $loc = str_replace(' Ave ', ' Avenue', $loc);
-
     $loc = str_replace('Blvd.', 'Boulevard', $loc);
     $loc = str_replace(' Blvd ', ' Boulevard', $loc);
 

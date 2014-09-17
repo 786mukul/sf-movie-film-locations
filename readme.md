@@ -1,29 +1,13 @@
-# Backbone.js TodoMVC Example
+# Uber Coding Challenge: SF Movies
 
-> Backbone.js gives structure to web applications by providing models with key-value binding and custom events, collections with a rich API of enumerable functions, views with declarative event handling, and connects it all to your existing API over a RESTful JSON interface.
+**Author:** Buck Kimbriel | [Portfolio](http://bkimbriel.com) | [Project Examples](http://dropthought.com)
+**Project:** SF Movies
+**Technical Track:** Front-end track
 
-> _[Backbone.js - backbonejs.org](http://backbonejs.org)_
+**Technical Track Reasoning:**
+I chose to go with a front-end focused approach as I felt it would provide the best user experience possible. Although I had no prior experience with Backbone.js, it was fun to pick up something new and get running with it.
+The one issue that came up with based around geocoding the API addresses to geolocation coordinates. A php script was made to organize the data and then send the requests in a manner that followed Google's guidelines.
+Data is stored into a redis database to allow quick and easy access for users without requiring an external API. In a production environment, data would be retrieved and stored from the original API at a set interval to make sure app data remains up to date.
 
-
-## Learning Backbone.js
-
-The [Backbone.js website](http://backbonejs.org) is a great resource for getting started.
-
-Here are some links you may find helpful:
-
-* [Annotated source code](http://backbonejs.org/docs/backbone.html)
-* [Applications built with Backbone.js](http://backbonejs.org/#examples)
-* [FAQ](http://backbonejs.org/#faq)
-
-Articles and guides from the community:
-
-* [Developing Backbone.js Applications](http://addyosmani.github.io/backbone-fundamentals)
-* [Collection of tutorials, blog posts, and example sites](https://github.com/documentcloud/backbone/wiki/Tutorials%2C-blog-posts-and-example-sites)
-
-Get help from other Backbone.js users:
-
-* [Backbone.js on StackOverflow](http://stackoverflow.com/questions/tagged/backbone.js)
-* [Google Groups mailing list](https://groups.google.com/forum/#!forum/backbonejs)
-* [Backbone.js on Twitter](http://twitter.com/documentcloud)
-
-_If you have other helpful links to share, or find any of the links above no longer work, please [let us know](https://github.com/tastejs/todomvc/issues)._
+**Trade Offs / What To Change:**
+With more time I feel there are quite a few features that could be added. Connecting into other APIs such as IMBd would be great in order to present the user with more information about actors, etc. Also providing a way for the user to view screen shots, purchase information, etc about movies would be a great way to make the app more interactive and possibly monetize.

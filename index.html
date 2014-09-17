@@ -9,6 +9,7 @@
 </head>
 <body id="app">
 
+
     <!-- Header -->
     <div class="header">
 
@@ -81,6 +82,8 @@
     </div>
 
 
+
+
     <!-- List item template -->
     <script type="text/javascript" id="list-item-template">
         <a class="movie" href="#info/<%= link %>">
@@ -96,17 +99,37 @@
     <!-- Single item info template -->
     <script type="text/javascript" id="info-template">
         <p class="info">
-            <b class="large"><%- title %></b> <br />
-            <b>Release Year:</b> <%- release_year %><br />
-            <b>Actors:</b> <%- actor_1 %>, <%- actor_2 %>, <%- actor_3 %><br />
-            <b>Writer:</b> <%- writer %><br />
-            <b>Locations:</b><br /> <%- locations.length %><br />
-            <b>Fun Facts:</b> <br /> <%- fun_facts %><br />
-            <b>Production Company:</b> <%- production_company %><br />
-            <b>Distributer:</b> <%- distributor %><br />
-            <b>Director:</b> <%- director %><br />
+            <% if(title) { %> <b class="large"><%- title %></b> <br /> <% } %>
+            <% if(release_year) { %> <b>Release Year:</b> <%- release_year %><br /> <% } %>
+
+            <% if(actor_1) { %>
+                <b>Actors:</b> <%- actor_1 %>
+                <% if(actor_2.length > 0) { %>, <%- actor_2 %><% } %>
+                <% if(actor_3.length > 0) { %>, <%- actor_3 %><% } %>
+                <br />
+            <% } %>
+
+            <% if(locations) { %>
+                <b>Locations:</b>
+                </p>
+
+                <ul class="info-list">
+                    <% for(var i = 0; i < locations.length; i++) { %>
+                        <li><%- locations[i].title %></li>
+                    <% } %>
+                </ul>
+
+                <p class="info">
+            <% } %>
+
+            <% if(fun_facts) { %> <b>Fun Facts:</b> <br /> <%- fun_facts %><br /> <% } %>
+            <% if(writer) { %> <b>Writer:</b> <%- writer %><br /> <% } %>
+            <% if(production_company) { %> <b>Production Company:</b> <%- production_company %><br /> <% } %>
+            <% if(distributor) { %> <b>Distributer:</b> <%- distributor %><br /> <% } %>
+            <% if(director) { %> <b>Director:</b> <%- director %><br /> <% } %>
         </p>
     </script>
+
 
 
 
@@ -134,6 +157,7 @@
 
     <!-- Init -->
     <script src="js/app.js"></script>
+
 
 </body>
 </html>
