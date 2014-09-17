@@ -1,0 +1,59 @@
+.search
+    height: $header_height
+
+    input,
+    .btn
+        background: $white
+        border: 0px solid transparent
+        outline: 0
+        -webkit-appearance: none
+        position: absolute
+        height: $header_height
+        font-size: $text_size
+        font-family: 'PT Sans Narrow', 'Helvetica Neue', 'Helvetica', sans-serif
+
+    input[type="text"]
+        width: 100%
+        padding-right: 140px
+        font-weight: 700
+        color: $black
+        text-indent: 16px
+        top: 0
+        left: 0
+        box-sizing: border-box
+
+    input[type="submit"],
+    .btn
+        text-align: center
+        color: $grey
+        top: 0
+        width: 80px
+        text-transform: uppercase
+        cursor: pointer
+
+    input[type="submit"]
+        width: 64px
+        right: 80px
+        font-weight: 700
+        color: $black
+
+    .btn
+        box-sizing: border-box
+        padding-top: 16px
+        right: 0px
+
+    @media screen and (max-width: 360px)
+        input[type="text"]
+            text-indent: 4px
+
+    ::-webkit-input-placeholder
+        color: $black
+
+    :-moz-placeholder
+        color: $black
+
+    ::-moz-placeholder
+        color: $black
+
+    :-ms-input-placeholder
+        color: $black

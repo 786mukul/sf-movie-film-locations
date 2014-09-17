@@ -1,0 +1,24 @@
+.list
+    background: $silver
+    
+    li
+        color: $grey
+        font-size: $text_size
+        text-shadow: 1px 1px 0px $white
+        position: relative
+        padding: 16px
+        box-sizing: border-box
+        line-height: 1.6em
+        border-bottom: 1px solid rgba(0,0,0,.1)
+        border-top: 1px solid rgba(255,255,255,1)
+
+        &:after
+            content: '›'
+            position: absolute
+            top: 28px
+            right: 28px
+            color: $grey
+            font-size: $text_size
+
+        b
+            color: $black

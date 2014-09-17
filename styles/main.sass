@@ -1,0 +1,63 @@
+// base imports
+@import reset
+@import theme
+
+
+// body styles
+body
+    background: $silver
+    color: $black
+    font-family: 'PT Sans Narrow', 'Helvetica Neue', 'Helvetica', sans-serif
+    font-size: $body_size
+    padding: 0
+    margin: 0
+    border: 0
+    display: block
+    position: absolute
+    top: 0
+    left: 0
+    right: 0
+    bottom: 0
+
+
+// page container
+.container
+    position: absolute
+    top: $header_height
+    left: 0
+    right: 0
+    bottom: 0
+    background: transparent
+    overflow: hidden
+    overflow-y: auto
+    -webkit-overflow-scrolling: touch
+
+
+// anchor defaults
+a
+    color: inherit
+    text-decoration: none
+
+
+// bold defaults
+b, strong
+    font-weight: 700
+
+
+// hide class shortcut
+.hide
+    display: none!important
+
+
+// show class shortcut
+.show
+    display: block!important
+
+
+// import styles
+@import header
+@import search
+@import list
+@import info
+@import overlay
+@import loading

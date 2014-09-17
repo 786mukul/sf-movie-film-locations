@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en" data-framework="backbonejs">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>SF Movies • Buck Kimbriel • Uber Inc.</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link href='http://fonts.googleapis.com/css?family=PT+Sans+Narrow:400,700' rel='stylesheet' type='text/css'>
+</head>
+<body id="app">
+
+    <!-- Header -->
+    <div class="header">
+
+        <!-- Title -->
+        <div class="title"><a href="#">SF Movies</a></div>
+
+        <!-- Navigation buttons -->
+        <div class="navigation">
+
+            <!-- Back -->
+            <li id="backBtn" class="hide">
+                <a onclick="window.history.back()">Back</a>
+            </li>
+
+            <!-- Map -->
+            <li id="mapBtn" class="hide">
+                <a href="#map">Map</a>
+            </li>
+
+            <!-- List -->
+            <li id="listBtn">
+                <a href="#list">List</a>
+            </li>
+
+            <!-- Search -->
+            <li id="searchBtn">
+                <a href="javascript:void(0)">Search</a>
+            </li>
+
+        </div>
+
+        <!-- Search form -->
+        <div id="searchForm" class="search hide">
+
+            <!-- Input field -->
+            <input id="search_input" type="text" placeholder="Search..." />
+
+            <!-- Submit button -->
+            <input type="submit" value="Search" />
+
+            <!-- Cancel button -->
+            <div id="cancelBtn" class="btn"><a href="javascript:void(0)">Cancel</a></div>
+
+        </div>
+
+    </div>
+
+
+    <!-- Maps page -->
+    <div id="map" class="container hide"></div>
+
+
+    <!-- List page -->
+    <div id="list" class="container hide">
+        <ul class="list"></ul>
+    </div>
+
+
+    <!-- Single item info container -->
+    <div id="info" class="container hide"></div>
+
+
+    <!-- Page Overlay -->
+    <div class="overlay hide"></div>
+
+
+    <!-- Loading page overlay -->
+    <div class="loading">
+        <img src="images/loading.gif" />
+    </div>
+
+
+    <!-- List item template -->
+    <script type="text/javascript" id="list-item-template">
+        <a class="movie" href="#info/<%= link %>">
+            <li>
+                <b><%= title %></b>
+                <br />
+                <%= locations.length %> location<% if(locations.length > 1) { %>s<% } %>
+            </li>
+        </a>
+    </script>
+
+
+    <!-- Single item info template -->
+    <script type="text/javascript" id="info-template">
+        <p class="info">
+            <b class="large"><%- title %></b> <br />
+            <b>Release Year:</b> <%- release_year %><br />
+            <b>Actors:</b> <%- actor_1 %>, <%- actor_2 %>, <%- actor_3 %><br />
+            <b>Writer:</b> <%- writer %><br />
+            <b>Locations:</b><br /> <%- locations.length %><br />
+            <b>Fun Facts:</b> <br /> <%- fun_facts %><br />
+            <b>Production Company:</b> <%- production_company %><br />
+            <b>Distributer:</b> <%- distributor %><br />
+            <b>Director:</b> <%- director %><br />
+        </p>
+    </script>
+
+
+
+    <!-- Libraries -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCrGZXP252n1dwlyFyj69oX5JlEPTuTMLI"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="bower_components/underscore/underscore.js"></script>
+    <script src="bower_components/backbone/backbone.js"></script>
+
+    <!-- Models -->
+    <script src="js/models/movie.js"></script>
+
+    <!-- Collections -->
+    <script src="js/collections/movies.js"></script>
+
+    <!-- Views -->
+    <script src="js/views/header-view.js"></script>
+    <script src="js/views/map-view.js"></script>
+    <script src="js/views/list-view.js"></script>
+    <script src="js/views/info-view.js"></script>
+    <script src="js/views/app-view.js"></script>
+
+    <!-- Routers -->
+    <script src="js/routers/router.js"></script>
+
+    <!-- Init -->
+    <script src="js/app.js"></script>
+
+</body>
+</html>
