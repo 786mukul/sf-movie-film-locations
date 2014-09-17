@@ -1,57 +1,11 @@
 <?php
 
-die();
-
-echo 'started';
-
-$movies = getSfMovies();
-$movies = (array) $movies;
-$movieKeys = array_keys($movies);
-
-for($i = 0; $i < count($movies); $i++)
-{
-    // flush sleep timer
-    ob_implicit_flush(true);
-    ob_end_flush();
-
-    $key = $movieKeys[$i];
-
-    echo $key;
-
-    $locations = $movies[$key]->locations;
-
-    for($ii = 0; $ii < count($locations); $ii++)
-    {
-        if(strlen($locations[$ii]['title']))
-        {
-            $location = fullAddress($locations[$ii]['title']);
-            $geo = addressCoordinates($location);
-
-            if($geo['lat']) $movies[$key]->locations[$ii]['lat'] = $geo['lat'];
-            if($geo['lng']) $movies[$key]->locations[$ii]['lng'] = $geo['lng'];
-
-            sleep(.125);
-        }
-    }
-
-    // wait 1 second to not violate geocode limit
-    sleep(1);
-}
-
-
-// create data.json file if it doesn't exist
-createFile('data.json', json_encode($movies));
-
-
-
 
 /*
  * Get API data from link 
  */
-function getSfMovies()
+function getSfMovies($api)
 {
-    // api request url
-    $api = 'http://data.sfgov.org/resource/yitu-d5am.json';
 
     // all movies object response from api
     $movies = json_decode(file_get_contents($api));
@@ -152,7 +106,7 @@ function fullAddress($loc)
 /*
  * Get geo coordinates for group of addresses
  */
-function addressCoordinates($address)
+function coordinates($address)
 {
     // get amount of addresses
     $count = count($addresses);
@@ -163,7 +117,7 @@ function addressCoordinates($address)
     $bounds = '37.54512174599488,-122.58132934570312|37.864554557605615,-122.26444244384766';
 
     // google api key
-    $apiKey = 'AIzaSyBuI37FLg5fPbi4ytwwt7My1LFSJ48MQUQ';
+    $apiKey = 'AIzaSyBTHS3T4nIfN0vu18bF0NfuYQOtWo8rQFk';
 
     $address = str_replace(' ', '+', $address);
 
@@ -183,18 +137,44 @@ function addressCoordinates($address)
 
 
 
-// create file shortcut
-function createFile($name, $data)
+/*
+ * Geocode addresses to get map coordinates 
+ */
+function geocode($movies)
 {
-    $dataFile = fopen($name, "w");
-    fwrite($dataFile, $data);
-    fclose($dataFile);
+    $movies = (array) $movies;
+    $movieKeys = array_keys($movies);
+
+    for($i = 0; $i < count($movies); $i++)
+    {
+        // flush sleep timer
+        ob_implicit_flush(true);
+        ob_end_flush();
+
+        $key = $movieKeys[$i];
+
+        $locations = $movies[$key]->locations;
+
+        for($ii = 0; $ii < count($locations); $ii++)
+        {
+            if(strlen($locations[$ii]['title']))
+            {
+                $location = fullAddress($locations[$ii]['title']);
+                $geo = coordinates($location);
+
+                if($geo['lat']) $movies[$key]->locations[$ii]['lat'] = $geo['lat'];
+                if($geo['lng']) $movies[$key]->locations[$ii]['lng'] = $geo['lng'];
+
+                sleep(.125);
+            }
+        }
+
+        // wait 1 second to not violate geocode limit
+        sleep(1);
+    }
+
+    return $movies;
 }
-
-
-
-
-echo 'success';
 
 
 

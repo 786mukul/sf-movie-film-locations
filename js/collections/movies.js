@@ -72,7 +72,7 @@ var app = app || {};
             var params = _.extend({
                 type: 'GET',
                 dataType: 'json',
-                url: '/data.json',
+                url: '/data/',
                 processData: false
             }, options);
 
