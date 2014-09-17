@@ -1,6 +1,8 @@
+// search form
 .search
     height: $header_height
 
+    // input and button styles
     input,
     .btn
         background: $white
@@ -12,6 +14,7 @@
         font-size: $text_size
         font-family: 'PT Sans Narrow', 'Helvetica Neue', 'Helvetica', sans-serif
 
+    // text input
     input[type="text"]
         width: 100%
         padding-right: 140px
@@ -22,6 +25,7 @@
         left: 0
         box-sizing: border-box
 
+    // button styles
     input[type="submit"],
     .btn
         text-align: center
@@ -31,29 +35,30 @@
         text-transform: uppercase
         cursor: pointer
 
+    // submit button
     input[type="submit"]
         width: 64px
         right: 80px
         font-weight: 700
         color: $black
 
+    // standard button
     .btn
         box-sizing: border-box
         padding-top: 16px
         right: 0px
 
+    // make placeholder text black
+    ::-webkit-input-placeholder
+        color: $black
+    :-moz-placeholder
+        color: $black
+    ::-moz-placeholder
+        color: $black
+    :-ms-input-placeholder
+        color: $black
+
+    // mobile edits
     @media screen and (max-width: 360px)
         input[type="text"]
             text-indent: 4px
-
-    ::-webkit-input-placeholder
-        color: $black
-
-    :-moz-placeholder
-        color: $black
-
-    ::-moz-placeholder
-        color: $black
-
-    :-ms-input-placeholder
-        color: $black
