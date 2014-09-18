@@ -78,10 +78,15 @@ var app = app || {};
 
             // marker click event
             google.maps.event.addListener(marker, 'click', function() {
-                // blur search input to hide user keybaord
+                // blur inputs before forwarding user
+                document.activeElement.blur();
                 $('#search_input').blur();
-                // send user to info page
-                location.href = './#info/'+link;
+
+
+                // send user to info page after bluring
+                setTimeout(function(){
+                    location.href = './#info/'+link;
+                },1);
             });
         }
 
