@@ -63,9 +63,9 @@ var app = app || {};
          */
         searchActive: function() {
 
-            var titles = this.titles,
+            var titles = this.titles;
 
-            this.$searchInput.autocomplete({
+            $searchInput.autocomplete({
                 source: titles,
                 select: function(event, ui)
                 {
