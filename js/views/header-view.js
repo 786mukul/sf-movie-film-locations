@@ -46,6 +46,11 @@ var app = app || {};
          * Show search form 
          */
         searchShow: function () {
+
+            // reset search value and blur input
+            this.$searchInput.val('');
+            this.$searchInput.blur();
+
             // show overlay, search form and focus into search input
             this.$overlay.removeClass('hide');
             this.$search.removeClass('hide');
@@ -59,16 +64,13 @@ var app = app || {};
         searchActive: function() {
 
             var titles = this.titles,
-                $searchInput = this.$searchInput;
 
-            $searchInput.autocomplete({
+            this.$searchInput.autocomplete({
                 source: titles,
                 select: function(event, ui)
                 {
                     var link = ui.item.label.replace(/\s+/g, '-').toLowerCase();
                     location.href = './#info/'+link;
-                    $searchInput.val('');
-                    $searchInput.blur();
                 }
             });
 
@@ -90,13 +92,6 @@ var app = app || {};
             // hide form and overlay
             this.$search.addClass('hide');
             this.$overlay.addClass('hide');
-
-            // reset search value and blur input
-            this.$searchInput.val('');
-            this.$searchInput.blur();
-
-            // clear search results
-            this.$results.html('');
         }
 
     });
