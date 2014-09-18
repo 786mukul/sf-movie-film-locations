@@ -29,7 +29,7 @@ var app = app || {};
          */
         render: function (title) 
         {
-            // blur inputs before forwarding user
+            // blur inputs before showing data
             document.activeElement.blur();
             $('#search_input').blur();
 
