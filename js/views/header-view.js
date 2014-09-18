@@ -65,7 +65,7 @@ var app = app || {};
 
             var titles = this.titles;
 
-            $searchInput.autocomplete({
+            this.$searchInput.autocomplete({
                 source: titles,
                 select: function(event, ui)
                 {
