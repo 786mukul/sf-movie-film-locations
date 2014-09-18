@@ -47,7 +47,7 @@ var app = app || {};
             new app.mapView();
 
             // list page
-            new app.listView(app.collection);
+            new app.listView();
 
 
             // get current page info

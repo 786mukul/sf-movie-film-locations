@@ -18,16 +18,16 @@ var app = app || {};
         /*
          * Create list of 
          */
-        initialize: function (collection) {
+        initialize: function () {
 
             // clear previously stored data
             this.$el.html('');
 
             // loop collection and add items to list
-            for(var i = 0; i < collection.length; i++)
+            for(var i = 0; i < app.collection.length; i++)
             {
                 // get model data
-                var item = collection.models[i].attributes;
+                var item = app.collection.models[i].attributes;
 
                 // create template from model data
                 var li = _.template( $('#list-item-template').html(), item);
