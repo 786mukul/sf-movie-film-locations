@@ -108,15 +108,13 @@ function fullAddress($loc)
  */
 function coordinates($address)
 {
-    // get amount of addresses
-    $count = count($addresses);
+    // google api key
+    $apiKey = 'AIzaSyBSdGYPyAb255BboSfmP3KTWud9oMjAJTc';
 
     // geocoder api link
     $geocoder = 'https://maps.googleapis.com/maps/api/geocode/json?address=';
 
-    // google api key
-    $apiKey = 'AIzaSyBSdGYPyAb255BboSfmP3KTWud9oMjAJTc';
-
+    // replace spaces with +
     $address = str_replace(' ', '+', $address);
 
     // create url to geocode address
@@ -129,6 +127,7 @@ function coordinates($address)
     $lat = $json->results[0]->geometry->location->lat;
     $lng = $json->results[0]->geometry->location->lng;
 
+    // return response data
     return Array('lat' => $lat, 'lng' => $lng);
 }
 
@@ -140,33 +139,47 @@ function coordinates($address)
  */
 function geocode($movies)
 {
+    // ensure movies is array
     $movies = (array) $movies;
+
+    // get movie keys
     $movieKeys = array_keys($movies);
 
+    // loop through each movie
     for($i = 0; $i < count($movies); $i++)
     {
-        // flush sleep timer
+        // flush sleep buffer
         ob_implicit_flush(true);
         ob_end_flush();
 
+        // get current movie key
         $key = $movieKeys[$i];
 
+        // current movie locations
         $locations = $movies[$key]->locations;
 
+        // loop locations and get geocoordinates
         for($ii = 0; $ii < count($locations); $ii++)
         {
+            // ensure that a valid location is passed
             if($locations[$ii]['title'] != null && strlen($locations[$ii]['title']))
             {
+                // convert location to full address before sending to get coordinates
                 $location = fullAddress($locations[$ii]['title']);
+
+                // get coordinates of the address
                 $geo = coordinates($location);
 
+                // latitude (ensure it's within san francisco limits)
                 if($geo['lat'] > 37.54512174599488 && $geo['lat'] < 37.864554557605615) $movies[$key]->locations[$ii]['lat'] = $geo['lat'];
                 else $movies[$key]->locations[$ii]['lat'] = null;
 
+                // longitude (ensure it's within san francisco limits)
                 if($geo['lng'] > -122.58132934570312 && $geo['lng'] < -122.26444244384766) $movies[$key]->locations[$ii]['lng'] = $geo['lng'];
                 else $movies[$key]->locations[$ii]['lng'] = null;
 
-                sleep(.125);
+                // sleep to ensure that no more than 10 request are made a second
+                sleep(.11);
             }
         }
 
@@ -174,10 +187,9 @@ function geocode($movies)
         sleep(1);
     }
 
+    // return movies with geocoded addresses
     return $movies;
 }
-
-
 
 
 ?>

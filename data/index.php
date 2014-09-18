@@ -1,5 +1,6 @@
 <?php
 
+
 // data retrieval functions
 require 'retrieval.php';
 
@@ -8,7 +9,10 @@ require 'retrieval.php';
 require 'predis/Autoloader.php';
 Predis\Autoloader::register();
 
-// redis connection settings
+
+/*
+ * Redis connection
+ */
 $redis_server = array(
     'host'     => '127.0.0.1',
     'port'     => 6380,
@@ -16,7 +20,7 @@ $redis_server = array(
 );
 
 // db connection
-$db = new Predis\Client ( $redis_server );
+$db = new Predis\Client($redis_server);
 
 
 /*

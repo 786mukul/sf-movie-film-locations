@@ -19,7 +19,6 @@ var app = app || {};
          * Header events 
          */
         events: {
-            'click input[type="submit"]': 'searchSubmit',
             'click #searchBtn': 'searchShow',
             'click #cancelBtn': 'searchCancel',
             'keypress #search_input': 'searchActive'
@@ -34,7 +33,6 @@ var app = app || {};
             this.$search = $('#searchForm');
             this.$searchInput = $('#search_input');
             this.$cancelBtn = $('#cancelBtn');
-            this.$submitBtn = $('input[type="submit"]');
             this.$overlay = $('.overlay');
             this.$results = $('.results');
 
@@ -74,14 +72,6 @@ var app = app || {};
                 }
             });
 
-        },
-
-
-        /*
-         * Submit search form 
-         */
-        searchSubmit: function () {
-            console.log('searchSubmit');
         },
 
 
