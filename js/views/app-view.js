@@ -20,10 +20,7 @@ var app = app || {};
          */
         initialize: function()
         {
-            // loading overlay
-            this.$loading = this.$('.loading');
-
-            // create global collection object
+            // create movies collection object
             app.collection = new app.Movies();
 
             // if data isn't present in local storage, make request to get data
@@ -33,7 +30,12 @@ var app = app || {};
             }
             else
             {
+                // set page object to render app within success
+                var page = this;
+
+                // request data from server and wait for collection data before rendering app
                 app.collection.ajax().success(function(data){
+
                     // if local storage is available, store data
                     if(typeof(Storage) !== 'undefined')
                     {
@@ -43,10 +45,10 @@ var app = app || {};
 
                     // add models to collection
                     app.collection.addModels(data);
-                });
 
-                // render page
-                this.render();
+                    // render page after a successful submission
+                    page.render();
+                });
             }
 
         },
@@ -57,8 +59,9 @@ var app = app || {};
          */
         render: function()
         {
-            // hide loading
-            this.$loading.fadeOut();
+
+            // fadeout loading overlay
+            $('.loading').fadeOut();
 
             // header
             new app.headerView();
@@ -69,17 +72,9 @@ var app = app || {};
             // list page
             new app.listView();
 
+            // single page info view
+            new app.infoView();
 
-            // get current page info
-            var hash = String(window.location.hash);
-            var page = hash.substr(1,4);
-
-            // info page
-            if(page === 'info')
-            {
-                var title = hash.substr(hash.indexOf('/')+1, hash.length);
-                new app.infoView().render(title);
-            }
         },
 
 

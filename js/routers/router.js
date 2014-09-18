@@ -27,12 +27,12 @@ var app = app || {};
     var $overlay = $('.overlay');
 
 
-    // Routes
+    /*
+     * Routes
+     */
 	var Routes = Backbone.Router.extend({
 
-        /*
-         * Route mapping 
-         */
+        // Route mapping 
 		routes: 
         {
             '': 'map',
@@ -48,17 +48,22 @@ var app = app || {};
          */
         map: function () 
         {
-            $searchForm.addClass('hide');
+            // hide overlay
             $overlay.addClass('hide');
 
+            // hide search form, map button and back button
+            $searchForm.addClass('hide');
             $mapBtn.addClass('hide');
             $backBtn.addClass('hide');
-            $listBtn.removeClass('hide');
-            $searchBtn.removeClass('hide');
 
+            // hide list and info pages
             $info.addClass('hide').css('display', 'none');
             $list.addClass('hide').css('display', 'none');
+
+            // show map, list button and search button
             $map.removeClass('hide').css('display', 'block');
+            $listBtn.removeClass('hide');
+            $searchBtn.removeClass('hide');
 
             // refresh map view
             new app.mapView();
@@ -70,16 +75,23 @@ var app = app || {};
          */
         list: function () 
         {
-            $searchForm.addClass('hide');
+            // hide overlay
             $overlay.addClass('hide');
 
+            // hide search form, list button and back button
+            $searchForm.addClass('hide');
             $listBtn.addClass('hide');
             $backBtn.addClass('hide');
+
+            // show map and search button
             $mapBtn.removeClass('hide');
             $searchBtn.removeClass('hide');
 
+            // hide info and map pages
             $info.addClass('hide').css('display', 'none');
             $map.addClass('hide').css('display', 'none');
+
+            // show list page
             $list.removeClass('hide').css('display', 'block');
         },
 
@@ -89,16 +101,23 @@ var app = app || {};
          */
         info: function (id) 
         {
-            $searchForm.addClass('hide');
+            // hide overlay
             $overlay.addClass('hide');
 
+            // hide search form, search button, list button, map button
+            $searchForm.addClass('hide');
             $listBtn.addClass('hide');
             $mapBtn.addClass('hide');
             $searchBtn.addClass('hide');
+
+            // show back button
             $backBtn.removeClass('hide');
 
+            // hide map and list pages
             $map.addClass('hide').css('display', 'none');
             $list.addClass('hide').css('display', 'none');
+
+            // show info page
             $info.removeClass('hide').css('display', 'block');
 
             // render info view with id info
@@ -114,4 +133,5 @@ var app = app || {};
 
     // History controller
 	Backbone.history.start();
+
 })();

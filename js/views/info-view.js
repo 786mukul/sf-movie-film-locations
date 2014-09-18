@@ -16,7 +16,12 @@ var app = app || {};
 
 
         // init
-        initialize: function(){},
+        initialize: function(){
+
+            // Get hash and load data if single info page is set on load 
+            this.checkInitLoad();
+
+        },
 
 
         /*
@@ -32,6 +37,23 @@ var app = app || {};
                 this.$el.html(infoData);
             }
         },
+
+        checkInitLoad: function()
+        {
+            // location hash
+            var hash = String(window.location.hash);
+
+            // current page
+            var page = hash.substr(1,4);
+
+            // info page
+            if(page === 'info')
+            {
+                var title = hash.substr(hash.indexOf('/')+1, hash.length);
+                this.render(title);
+            }
+            
+        }
 
     });
 

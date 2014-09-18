@@ -1,5 +1,4 @@
-/* global Backbone */
-/* global _ */
+/* global Backbone, _ */
 var app = app || {};
 
 (function () {
@@ -22,7 +21,7 @@ var app = app || {};
          * Initialize collection
          */
         initialize: function() {
-            // if data in local storage, add to collection
+            // if data in local storage, add movies to collection
             if(this.localStorage.get('uber-sf-movies'))
             {
                 var data = this.localStorage.get('uber-sf-movies');
@@ -52,21 +51,25 @@ var app = app || {};
          */
         localStorage: 
         {
+            // get item
             get: function(title)
             {
                 return localStorage.getItem(title);
             },
 
+            // set item
             set: function(title, data)
             {
                 localStorage.setItem(title, data);
             },
 
+            // delete item
             del: function(title)
             {
                 localStorage.removeItem(title);
             },
 
+            // clear local storage
             clear: function()
             {
                 localStorage.clear();
@@ -79,13 +82,16 @@ var app = app || {};
          */
         addModels: function(data)
         {
+            // ensure json data type
             if(typeof data === 'string')
             {
                 data = JSON.parse(data);
             }
 
+            // get keys of object
             var keys = Object.keys(data);
 
+            // add movie to collection
             for(var i = 0; i < keys.length; i++)
             {
                 this.add(new app.Movie(data[keys[i]]));
