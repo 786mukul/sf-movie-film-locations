@@ -26,9 +26,29 @@ var app = app || {};
             // create global collection object
             app.collection = new app.Movies();
 
-            // timeout before rendering app to ensure collection is set
-            var page = this;
-            setTimeout(function(){ page.render(); },1);
+            // if data isn't present in local storage, make request to get data
+            if(app.collection.localStorage.get('uber-sf-movies'))
+            {
+                this.render();
+            }
+            else
+            {
+                app.collection.ajax().success(function(data){
+                    // if local storage is available, store data
+                    if(typeof(Storage) !== 'undefined')
+                    {
+                        app.collection.localStorage.clear();
+                        app.collection.localStorage.set('uber-sf-movies', JSON.stringify(data));
+                    }
+
+                    // add models to collection
+                    app.collection.addModels(data);
+                });
+
+                // render page
+                this.render();
+            }
+
         },
 
 

@@ -1,7 +1,7 @@
 # Uber Coding Challenge: SF Movies
 
 **Author:**
-Buck Kimbriel | [Portfolio](http://bkimbriel.com) | [Project Examples](http://dropthought.com)
+Buck Kimbriel • [Portfolio](http://bkimbriel.com) • [Project Examples](http://dropthought.com)
 
 **Project:**
 SF Movies

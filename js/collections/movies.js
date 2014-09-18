@@ -19,48 +19,15 @@ var app = app || {};
 
 
         /*
-         * Fill collection with data
+         * Initialize collection
          */
-        initialize: function() 
-        {
-
-            // localStorage request
+        initialize: function() {
+            // if data in local storage, add to collection
             if(this.localStorage.get('uber-sf-movies'))
             {
-                // get data from localStorage, add it to collection and return collection
                 var data = this.localStorage.get('uber-sf-movies');
                 this.addModels(data);
-                return this;
-            }
-
-            // server request
-            else
-            {
-                // set collection object to access in ajax requests
-                var collection = this;
-
-                // localStorage functionality is available
-                if(typeof(Storage) !== 'undefined')
-                {
-                    // request json data from server then store data in collection and local storage and return collection
-                    this.ajax().success(function(data){
-                        collection.localStorage.clear();
-                        collection.localStorage.set('uber-sf-movies', JSON.stringify(data));
-                        collection.addModels(data);
-                        return collection;
-                    });
-                }
-                // no localStorage available for user
-                else
-                {
-                    // load data from server into collection and return collection
-                    this.ajax().success(function(data){
-                        collection.addModels(data);
-                        return collection;
-                    });
-                }
-            }
-
+            } 
         },
 
 
