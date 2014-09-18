@@ -78,7 +78,7 @@ var app = app || {};
 
             // marker click event
             google.maps.event.addListener(marker, 'click', function() {
-                location.href = '#info/'+link;
+                location.href = './#info/'+link;
             });
         }
 
