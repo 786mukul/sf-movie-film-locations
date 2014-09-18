@@ -65,7 +65,7 @@ var app = app || {};
                 select: function(event, ui)
                 {
                     var link = ui.item.label.replace(/\s+/g, '-').toLowerCase();
-                    location.href = '/#info/'+link;
+                    location.href = './#info/'+link;
                 }
             });
 
