@@ -61,12 +61,15 @@ var app = app || {};
          */
         searchActive: function() {
 
+            // movie titles to search through
             var titles = this.titles;
 
+            // auto complete search
             this.$searchInput.autocomplete({
                 source: titles,
                 select: function(event, ui)
                 {
+                    // link user to movie info page
                     var link = ui.item.label.replace(/\s+/g, '-').toLowerCase();
                     location.href = './#info/'+link;
                 }

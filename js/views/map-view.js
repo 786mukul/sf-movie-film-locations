@@ -78,6 +78,9 @@ var app = app || {};
 
             // marker click event
             google.maps.event.addListener(marker, 'click', function() {
+                // blur search input to hide user keybaord
+                $('#search_input').blur();
+                // send user to info page
                 location.href = './#info/'+link;
             });
         }

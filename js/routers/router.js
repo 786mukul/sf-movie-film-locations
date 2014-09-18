@@ -1,8 +1,8 @@
 /* global Backbone */
-
 var app = app || {};
 
 (function () {
+
 	'use strict';
 
 
@@ -21,6 +21,7 @@ var app = app || {};
     var $backBtn = $('#backBtn');
     var $searchBtn = $('#searchBtn');
 
+    // search form
     var $searchForm = $('#searchForm');
 
     // page overlay
@@ -31,6 +32,7 @@ var app = app || {};
      * Routes
      */
 	var Routes = Backbone.Router.extend({
+
 
         // Route mapping 
 		routes: 

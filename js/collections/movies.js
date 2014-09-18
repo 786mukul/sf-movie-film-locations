@@ -78,7 +78,7 @@ var app = app || {};
 
 
         /*
-         * Add complete full array dataset to collection
+         * Add multiple models to collection
          */
         addModels: function(data)
         {
