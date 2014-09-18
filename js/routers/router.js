@@ -21,6 +21,8 @@ var app = app || {};
     var $backBtn = $('#backBtn');
     var $searchBtn = $('#searchBtn');
 
+    var $searchForm = $('#searchForm');
+
     // page overlay
     var $overlay = $('.overlay');
 
@@ -46,6 +48,7 @@ var app = app || {};
          */
         map: function () 
         {
+            $searchForm.addClass('hide');
             $overlay.addClass('hide');
 
             $mapBtn.addClass('hide');
@@ -67,6 +70,7 @@ var app = app || {};
          */
         list: function () 
         {
+            $searchForm.addClass('hide');
             $overlay.addClass('hide');
 
             $listBtn.addClass('hide');
@@ -85,6 +89,7 @@ var app = app || {};
          */
         info: function (id) 
         {
+            $searchForm.addClass('hide');
             $overlay.addClass('hide');
 
             $listBtn.addClass('hide');

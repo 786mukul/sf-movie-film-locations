@@ -21,7 +21,8 @@ var app = app || {};
         events: {
             'click input[type="submit"]': 'searchSubmit',
             'click #searchBtn': 'searchShow',
-            'click #cancelBtn': 'searchCancel'
+            'click #cancelBtn': 'searchCancel',
+            'keypress #search_input': 'searchActive'
         },
 
 
@@ -35,6 +36,9 @@ var app = app || {};
             this.$cancelBtn = $('#cancelBtn');
             this.$submitBtn = $('input[type="submit"]');
             this.$overlay = $('.overlay');
+            this.$results = $('.results');
+
+            this.titles = app.collection.pluck('title');
         },
 
 
@@ -46,6 +50,25 @@ var app = app || {};
             this.$overlay.removeClass('hide');
             this.$search.removeClass('hide');
             this.$searchInput.focus();
+        },
+
+
+        /*
+         * Autocomplete search 
+         */
+        searchActive: function() {
+
+            var titles = this.titles;
+
+            this.$searchInput.autocomplete({
+                source: titles,
+                select: function(event, ui)
+                {
+                    var link = ui.item.label.replace(/\s+/g, '-').toLowerCase();
+                    location.href = '/#info/'+link;
+                }
+            });
+
         },
 
 
@@ -68,6 +91,9 @@ var app = app || {};
             // reset search value and blur input
             this.$searchInput.val('');
             this.$searchInput.blur();
+
+            // clear search results
+            this.$results.html('');
         }
 
     });

@@ -73,7 +73,9 @@
 
 
     <!-- Page Overlay -->
-    <div class="overlay hide"></div>
+    <div class="overlay hide">
+        <ul class="results"></ul>
+    </div>
 
 
     <!-- Loading page overlay -->
@@ -96,6 +98,16 @@
     </script>
 
 
+    <!-- Autocomplete search item template -->
+    <script type="text/javascript" id="search-item-template">
+        <a class="movie" href="#info/<%= link %>">
+            <li>
+                <%= title %>
+            </li>
+        </a>
+    </script>
+
+
     <!-- Single item info template -->
     <script type="text/javascript" id="info-template">
         <p class="info">
@@ -109,7 +121,7 @@
                 <br />
             <% } %>
 
-            <% if(locations[0].title.length) { %>
+            <% if(locations[0].title) { %>
                 <b>Locations:</b>
                 </p>
 
@@ -136,6 +148,7 @@
     <!-- Libraries -->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCrGZXP252n1dwlyFyj69oX5JlEPTuTMLI"></script>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1/jquery-ui.min.js"></script>
     <script src="bower_components/underscore/underscore.js"></script>
     <script src="bower_components/backbone/backbone.js"></script>
 

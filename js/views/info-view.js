@@ -25,9 +25,12 @@ var app = app || {};
         render: function (title) 
         {
             // get title model info, create template and then add to info page html
-            var info = app.collection.where({'link': title});
-            var infoData = _.template($('#info-template').html(), info[0].attributes);
-            this.$el.html(infoData);
+            if(app.collection)
+            {
+                var info = app.collection.where({'link': title});
+                var infoData = _.template($('#info-template').html(), info[0].attributes);
+                this.$el.html(infoData);
+            }
         },
 
     });
