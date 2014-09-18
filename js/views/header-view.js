@@ -58,14 +58,17 @@ var app = app || {};
          */
         searchActive: function() {
 
-            var titles = this.titles;
+            var titles = this.titles,
+                $searchInput = this.$searchInput;
 
-            this.$searchInput.autocomplete({
+            $searchInput.autocomplete({
                 source: titles,
                 select: function(event, ui)
                 {
                     var link = ui.item.label.replace(/\s+/g, '-').toLowerCase();
                     location.href = './#info/'+link;
+                    $searchInput.val('');
+                    $searchInput.blur();
                 }
             });
 
