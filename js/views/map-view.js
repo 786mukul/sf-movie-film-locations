@@ -41,7 +41,7 @@ var app = app || {};
             };
 
             // google map object
-            var map = new google.maps.Map(document.getElementById('map'), options);
+            var map = new google.maps.Map(document.getElementById('map-container'), options);
 
             // if collection is passed, loop through locations and make a map marker for each one
             if(collection)
