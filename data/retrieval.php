@@ -59,7 +59,7 @@ function getSfMovies($api)
 
 
 /*
- * Convert address to useable address 
+ * Convert address to useable address for google api 
  */
 function fullAddress($loc)
 {
@@ -114,10 +114,8 @@ function coordinates($address)
     // geocoder api link
     $geocoder = 'https://maps.googleapis.com/maps/api/geocode/json?address=';
 
-    $bounds = '37.54512174599488,-122.58132934570312|37.864554557605615,-122.26444244384766';
-
     // google api key
-    $apiKey = 'AIzaSyBTHS3T4nIfN0vu18bF0NfuYQOtWo8rQFk';
+    $apiKey = 'AIzaSyBSdGYPyAb255BboSfmP3KTWud9oMjAJTc';
 
     $address = str_replace(' ', '+', $address);
 
@@ -157,13 +155,16 @@ function geocode($movies)
 
         for($ii = 0; $ii < count($locations); $ii++)
         {
-            if(strlen($locations[$ii]['title']))
+            if($locations[$ii]['title'] != null && strlen($locations[$ii]['title']))
             {
                 $location = fullAddress($locations[$ii]['title']);
                 $geo = coordinates($location);
 
-                if($geo['lat']) $movies[$key]->locations[$ii]['lat'] = $geo['lat'];
-                if($geo['lng']) $movies[$key]->locations[$ii]['lng'] = $geo['lng'];
+                if($geo['lat'] > 37.54512174599488 && $geo['lat'] < 37.864554557605615) $movies[$key]->locations[$ii]['lat'] = $geo['lat'];
+                else $movies[$key]->locations[$ii]['lat'] = null;
+
+                if($geo['lng'] > -122.58132934570312 && $geo['lng'] < -122.26444244384766) $movies[$key]->locations[$ii]['lng'] = $geo['lng'];
+                else $movies[$key]->locations[$ii]['lng'] = null;
 
                 sleep(.125);
             }

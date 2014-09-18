@@ -14,3 +14,16 @@ I chose to go with a front-end focused approach as I felt it would provide the b
 
 **Trade Offs / What To Change:**
 With more time I feel there are quite a few features that could be added. Connecting into other APIs such as IMBd would be great in order to present the user with more information about actors, etc. Also providing a way for the user to view screen shots, purchase information, etc about movies would be a great way to make the app more interactive and possibly monetize.
+
+**Stack & 3rd party tools:**
+* PHP
+    * [Predis](https://github.com/nrk/predis)
+* JS
+    * [Backbone.js](http://backbonejs.org)
+    * [jQuery](http://jquery.com)
+    * [Underscore](http://underscorejs.org)
+    * [Grunt](http://gruntjs.com)
+    * [JSHint](http://www.jshint.com)
+* CSS
+    * [SASS](http://sass-lang.com) 
+* HTML 

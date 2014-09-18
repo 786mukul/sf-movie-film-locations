@@ -15,11 +15,13 @@ $redis_server = array(
     'database' => 0
 );
 
-// connect to redis db
+// db connection
 $db = new Predis\Client ( $redis_server );
 
 
-// if data is stored, print to user
+/*
+ * if data is stored, print db data to user
+ */
 if($db->get('movieGroups'))
 {
     // return data string from db
@@ -27,8 +29,11 @@ if($db->get('movieGroups'))
     print_r($json);
 }
 
-// no data stored in db, retrieve data from api
-else
+
+/*
+ * Retrieve data from api
+ */
+if($_REQUEST['download'] == 'secret')
 {
     // get movies from api
     $movies = getSfMovies('http://data.sfgov.org/resource/yitu-d5am.json');
