@@ -29,6 +29,11 @@ var app = app || {};
          */
         render: function (title) 
         {
+            // blur inputs before forwarding user
+            document.activeElement.blur();
+            $('#search_input').blur();
+
+
             // get title model info, create template and then add to info page html
             if(app.collection)
             {

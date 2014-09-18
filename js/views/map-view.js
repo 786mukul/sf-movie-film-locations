@@ -78,15 +78,7 @@ var app = app || {};
 
             // marker click event
             google.maps.event.addListener(marker, 'click', function() {
-                // blur inputs before forwarding user
-                document.activeElement.blur();
-                $('#search_input').blur();
-
-
-                // send user to info page after bluring
-                setTimeout(function(){
-                    location.href = './#info/'+link;
-                },1);
+                location.href = './#info/'+link;
             });
         }
 
