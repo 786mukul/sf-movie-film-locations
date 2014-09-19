@@ -39,8 +39,16 @@ var app = app || {};
                     // if local storage is available, store data
                     if(typeof(Storage) !== 'undefined')
                     {
-                        app.collection.localStorage.clear();
-                        app.collection.localStorage.set('uber-sf-movies', JSON.stringify(data));
+                        // handler for private browsing fix (no local storage usage in private)
+                        try 
+                        {
+                            app.collection.localStorage.clear();
+                            app.collection.localStorage.set('uber-sf-movies', JSON.stringify(data));
+                        }
+                        catch (e) 
+                        {
+                            console.log('private browsing');
+                        }
                     }
 
                     // add models to collection
